@@ -2,6 +2,7 @@ import pandas
 import re
 
 def convert_google_sheet_url(url):
+    """Returns a converted url to match csv format for use with pandas module."""
     # Regular expression to match and capture the necessary part of the URL
     pattern = r'https://docs\.google\.com/spreadsheets/d/([a-zA-Z0-9-_]+)(/edit#gid=(\d+)|/edit.*)?'
 
@@ -14,6 +15,7 @@ def convert_google_sheet_url(url):
     return new_url
 
 def get_sheet_from_url(url):
+    """Returns a pandas sheet from a given url."""
     new_url = convert_google_sheet_url(url)
     return pandas.read_csv(new_url)
 
