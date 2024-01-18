@@ -1,7 +1,7 @@
 import getsheet
 from datetime import date
 
-START_DATE = date(2023, 12, 17)
+START_DATE = date(2023, 12, 18)
 today = date.today()
 
 total_days_since = (today - START_DATE).days
@@ -38,8 +38,11 @@ def format_sms_msg(week, day):
         return "Today is a rest day."    
 
     # GET CORRECT SHEET BASED ON WEEKNUM
-    cur_sheet = getsheet.get_sheet_from_url(sheet_by_week[week])
-    print(cur_sheet.loc[0 + ((lift_num - 1) * 6):(lift_num * 6) - 1])
+    sheet = getsheet.get_sheet_from_url(sheet_by_week[week])
+    cur_sheet = sheet.loc[0 + ((lift_num - 1) * 6):(lift_num * 6) - 1]
+    todays_lifts = list(filter(lambda e: e != "Null", cur_sheet.loc[:,"Exercise"].values))
+    todays_weights = list(filter(lambda w: w != "Null", cur_sheet.loc[:,f"Week {week}"].values))
+    print(todays_lifts, todays_weights)
 
 format_sms_msg(week_num, day_num)
     
