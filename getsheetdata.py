@@ -53,6 +53,3 @@ class FormatSheet:
         lift_weight_pairs = self.generate_lift_weight_pairs(todays_lifts, todays_weights)
         msg = self.generate_fstring_from_pairlist(lift_weight_pairs)
         return msg
-    
-format_sheet = FormatSheet(date(2023, 12, 18))
-print(format_sheet.format_sms_msg())
