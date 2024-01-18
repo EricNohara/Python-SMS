@@ -1,7 +1,7 @@
 import getsheet
 from datetime import date
 
-START_DATE = date(2023, 12, 18)
+START_DATE = date(2023, 12, 17)
 today = date.today()
 
 total_days_since = (today - START_DATE).days
@@ -32,7 +32,6 @@ sheet_by_week = {
 
 def format_sms_msg(week, day):
     lift_num = day_num_to_lift_num[day]
-    print(lift_num)
     # If the current day in training cycle is not a lifting day, return string.
     if lift_num == -1:
         return "Today is a rest day."    
@@ -42,17 +41,23 @@ def format_sms_msg(week, day):
     cur_sheet = sheet.loc[0 + ((lift_num - 1) * 6):(lift_num * 6) - 1]
     todays_lifts = list(filter(lambda e: e != "Null", cur_sheet.loc[:,"Exercise"].values))
     todays_weights = list(filter(lambda w: w != "Null", cur_sheet.loc[:,f"Week {week}"].values))
-    lift_weight_tuples = generate_lift_weight_pairs(todays_lifts, todays_weights)
+    lift_weight_pairs = generate_lift_weight_pairs(todays_lifts, todays_weights)
+    msg = generate_fstring_from_pairlist(lift_weight_pairs)
+    return msg
 
 def generate_lift_weight_pairs(lifts, weights):
     pairs = []
     for i in range(len(lifts)):
-        pairs.append((lifts[i], weights[i]))
+        pairs.append(f"{lifts[i]}: {weights[i]}\n")
     return pairs
 
-
+def generate_fstring_from_pairlist(pairs):
+    msg = "Todays Workout:\n"
+    for p in pairs:
+        msg += p
+    return msg
 
 format_sms_msg(week_num, day_num)
-    
+
 
 
