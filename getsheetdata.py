@@ -10,8 +10,6 @@ weeks_since = total_days_since // 7
 week_num = weeks_since + 1
 day_num = total_days_since % 7
 
-print(f"Week {week_num}, Day {day_num}")
-
 day_num_to_lift_num = {
     1: 1,
     2: -1,
@@ -22,15 +20,28 @@ day_num_to_lift_num = {
     7: -1
 }
 
-print(day_num_to_lift_num[day_num])
+sheet_by_week = {
+    # MAP LINK TO SHEET TO CORRESPONDING WEEK IN PROGRAM
+    1: "https://docs.google.com/spreadsheets/d/1fMjyr4TgCrfVDT1U8fkXCfOyxMf6ulrWpuhltlKi974/edit#gid=0",
+    5: "https://docs.google.com/spreadsheets/d/1fMjyr4TgCrfVDT1U8fkXCfOyxMf6ulrWpuhltlKi974/edit#gid=1356405619",
+    9: "https://docs.google.com/spreadsheets/d/1fMjyr4TgCrfVDT1U8fkXCfOyxMf6ulrWpuhltlKi974/edit#gid=429567727",
+    12: "https://docs.google.com/spreadsheets/d/1fMjyr4TgCrfVDT1U8fkXCfOyxMf6ulrWpuhltlKi974/edit#gid=1035790153",
+    16: "https://docs.google.com/spreadsheets/d/1fMjyr4TgCrfVDT1U8fkXCfOyxMf6ulrWpuhltlKi974/edit#gid=378754300"
+}
 
 
+def format_sms_msg(week, day):
+    lift_num = day_num_to_lift_num[day]
+    print(lift_num)
+    # If the current day in training cycle is not a lifting day, return string.
+    if lift_num == -1:
+        return "Today is a rest day."    
 
-url = 'https://docs.google.com/spreadsheets/d/1fMjyr4TgCrfVDT1U8fkXCfOyxMf6ulrWpuhltlKi974/edit#gid=0'
+    # GET CORRECT SHEET BASED ON WEEKNUM
+    cur_sheet = getsheet.get_sheet_from_url(sheet_by_week[week])
+    print(cur_sheet.loc[0 + ((lift_num - 1) * 6):(lift_num * 6) - 1])
 
-cur_sheet = getsheet.get_sheet_from_url(url)
-
-print(cur_sheet.loc[0:5])
+format_sms_msg(week_num, day_num)
     
 
 
