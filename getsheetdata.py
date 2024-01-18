@@ -42,7 +42,15 @@ def format_sms_msg(week, day):
     cur_sheet = sheet.loc[0 + ((lift_num - 1) * 6):(lift_num * 6) - 1]
     todays_lifts = list(filter(lambda e: e != "Null", cur_sheet.loc[:,"Exercise"].values))
     todays_weights = list(filter(lambda w: w != "Null", cur_sheet.loc[:,f"Week {week}"].values))
-    print(todays_lifts, todays_weights)
+    print(generate_lift_weight_pairs(todays_lifts, todays_weights))
+
+def generate_lift_weight_pairs(lifts, weights):
+    pairs = []
+    for i in range(len(lifts)):
+        pairs.append((lifts[i], weights[i]))
+    return pairs
+
+
 
 format_sms_msg(week_num, day_num)
     
