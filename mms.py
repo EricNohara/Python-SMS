@@ -9,16 +9,19 @@ from email import encoders
 from os.path import basename
 
 def send_mms_by_email (
-        number: str, 
-        message: str, 
-        file_path: str,
-        mime_maintype: str,
-        mime_subtype: str,
-        provider: str, 
-        sender_credentials: tuple, 
-        subject: str="sent from python", 
-        smtp_server: str ="smtp.gmail.com", 
-        smtp_port: int = 465):
+    number: str, 
+    message: str, 
+    file_path: str,
+    mime_maintype: str,
+    mime_subtype: str,
+    provider: str, 
+    sender_credentials: tuple, 
+    subject: str="sent from python", 
+    smtp_server: str ="smtp.gmail.com", 
+    smtp_port: int = 465):
+
+    """
+    Does sends an MMS message to a given recipient by a given person using their provided credentials and with a given message."""
     
     sender_email, email_password = sender_credentials
     receiver_email = f"{number}@{PROVIDERS.get(provider).get("mms")}"

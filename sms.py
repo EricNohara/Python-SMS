@@ -9,6 +9,9 @@ def send_sms_by_email (
         subject: str="sent from python", 
         smtp_server: str ="smtp.gmail.com", 
         smtp_port: int = 465):
+    """
+    Does sends an SMS message to a given recipient by a given person using their provided credentials and with a given message.
+    """
     
     sender_email, email_password = sender_credentials
     receiver_email = f"{number}@{PROVIDERS.get(provider).get("sms")}"
