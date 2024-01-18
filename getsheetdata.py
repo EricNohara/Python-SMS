@@ -3,6 +3,14 @@ from datetime import date
 
 class FormatSheet:
     def __init__(self, start_date):
+        """
+        Initiate format sheet with a given start date of a workout program.
+
+        Important arguments:
+        start_date -- start date of your workout program. Replace with your correct program start date.
+        day_num_to_lift_num -- dictionary which defines which day corresponds to a lifting day in a given program. Rest days are defined as -1.
+        sheet_by_week -- dictionary defining the corresponding google sheet link for week ranges in a given program. Replace these or if all workout data is on one sheet, disregard.
+        """
         self.today = date.today()
         self.start_date = start_date
         self.total_days_since = (self.today - self.start_date).days
@@ -28,18 +36,40 @@ class FormatSheet:
         }
 
     def generate_lift_weight_pairs(self, lifts, weights):
+        """
+        Arguments:
+        lifts -- an array of strings containing all of the non-null exercise rows in a given day.
+        weights -- an array of strings containing all of the non-null weights/reps rows in a given day.
+
+        Returns an array containing formatted strings with the lifts and weights concatenated.
+        """
         pairs = []
         for i in range(len(lifts)):
-            pairs.append(f"{lifts[i]}: {weights[i]}\n")
+            if i < len(lifts) - 1:
+                pairs.append(f"{lifts[i]}: {weights[i]}\n")
+            else:
+                pairs.append(f"{lifts[i]}: {weights[i]}")
         return pairs
 
     def generate_fstring_from_pairlist(self, pairs):
+        """
+        Arguments:
+        pairs -- an array of formatted strings returned from calling the generate_lift_weight_pairs() function on a lifts and weights array.
+
+        Returns a formatted string from the pairs array which containes a nicely formatted list of today's workout.
+        """
         msg = "Todays Workout:\n"
         for p in pairs:
             msg += p
         return msg
     
     def format_sms_msg(self):
+        """
+        Returns a string with the corresponding workout for a given day.
+
+        If today is not a lifting day, return a string saying today is a rest day.
+        Otherwise, return the formatted string by calling generate_lift_weight_pairs() and generate_fstring_from_pairlist() on defined values.
+        """
         lift_num = self.day_num_to_lift_num[self.day_num]
         # If the current day in training cycle is not a lifting day, return string.
         if lift_num == -1:

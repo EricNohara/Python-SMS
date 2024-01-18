@@ -4,7 +4,6 @@ from getsheetdata import FormatSheet
 from datetime import date
 
 def main():
-    # number = "3149396381"
     number = "6363179533"
     format_sheet = FormatSheet(date(2023, 12, 18))
     message = format_sheet.format_sms_msg()
