@@ -8,8 +8,6 @@ from email import encoders
 
 from os.path import basename
 
-import json
-
 def send_mms_by_email (
         number: str, 
         message: str, 
