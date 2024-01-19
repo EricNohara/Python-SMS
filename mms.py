@@ -25,6 +25,7 @@ def send_mms_by_email (
     
     sender_email, email_password = sender_credentials
     receiver_email = f"{number}@{PROVIDERS.get(provider).get("mms")}"
+    # receiver_email = f"{number}@{PROVIDERS.get(provider).get("sms")}"
 
     email_msg = MIMEMultipart()
     email_msg["Subject"] = subject
