@@ -26,7 +26,8 @@ Does: sends an MMS message with the day's current workout from the program googl
 
 ## Demo:
 
-<img src="![SMS_sender](https://github.com/EricNohara/Python-SMS-Workout_Sender/assets/123284198/5147b4b8-3513-4a56-b5b0-9030a3015071)" width="200"/>
+![SMS_sender](https://github.com/EricNohara/Python-SMS-Workout_Sender/assets/123284198/a118151a-2b36-44ab-86a0-91f11b754a60)
+
 
 
 
