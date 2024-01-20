@@ -25,8 +25,8 @@ Does: sends an MMS message with the day's current workout from the program googl
 - Set up windows task scheduler to run the script daily at a certain time.
 
 ## Demo:
+<img src="C:\Users\Eric\Pictures\Camera Roll\SMS_sender.jpg" alt="SMS sender demo image" width="200"/>
 
-![IMG_7329](https://github.com/EricNohara/Python-SMS-Workout_Sender/assets/123284198/4bc8b6f1-a8b4-494a-b4a9-f871fa76bf91)
 
 
 
