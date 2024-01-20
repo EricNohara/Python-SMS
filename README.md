@@ -24,6 +24,10 @@ Does: sends an MMS message with the day's current workout from the program googl
   - Move the main.exe file which is now in the dist folder into the main directory.
 - Set up windows task scheduler to run the script daily at a certain time.
 
+## Template Workout Program Format for Google Sheets
+
+https://docs.google.com/spreadsheets/d/1fMjyr4TgCrfVDT1U8fkXCfOyxMf6ulrWpuhltlKi974/edit?usp=sharing
+
 ## Demo:
 
 ![SMS_sender](https://github.com/EricNohara/Python-SMS-Workout_Sender/assets/123284198/a118151a-2b36-44ab-86a0-91f11b754a60)
