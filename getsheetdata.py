@@ -24,7 +24,7 @@ class FormatSheet:
             4: -1,
             5: 3,
             6: 4,
-            7: -1
+            0: -1   # This is Sunday, the 7th day because 7 % 7 = 0.
         }
         self.sheet_by_week = {
             # MAP LINK TO SHEET TO CORRESPONDING WEEK IN PROGRAM
