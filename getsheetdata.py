@@ -28,12 +28,17 @@ class FormatSheet:
         }
         self.sheet_by_week = {
             # MAP LINK TO SHEET TO CORRESPONDING WEEK IN PROGRAM
-            1: "https://docs.google.com/spreadsheets/d/1fMjyr4TgCrfVDT1U8fkXCfOyxMf6ulrWpuhltlKi974/edit#gid=0",
-            5: "https://docs.google.com/spreadsheets/d/1fMjyr4TgCrfVDT1U8fkXCfOyxMf6ulrWpuhltlKi974/edit#gid=1356405619",
-            9: "https://docs.google.com/spreadsheets/d/1fMjyr4TgCrfVDT1U8fkXCfOyxMf6ulrWpuhltlKi974/edit#gid=429567727",
+            16: "https://docs.google.com/spreadsheets/d/1fMjyr4TgCrfVDT1U8fkXCfOyxMf6ulrWpuhltlKi974/edit#gid=378754300",
             12: "https://docs.google.com/spreadsheets/d/1fMjyr4TgCrfVDT1U8fkXCfOyxMf6ulrWpuhltlKi974/edit#gid=1035790153",
-            16: "https://docs.google.com/spreadsheets/d/1fMjyr4TgCrfVDT1U8fkXCfOyxMf6ulrWpuhltlKi974/edit#gid=378754300"
+            9: "https://docs.google.com/spreadsheets/d/1fMjyr4TgCrfVDT1U8fkXCfOyxMf6ulrWpuhltlKi974/edit#gid=429567727",
+            5: "https://docs.google.com/spreadsheets/d/1fMjyr4TgCrfVDT1U8fkXCfOyxMf6ulrWpuhltlKi974/edit#gid=1356405619",
+            1: "https://docs.google.com/spreadsheets/d/1fMjyr4TgCrfVDT1U8fkXCfOyxMf6ulrWpuhltlKi974/edit#gid=0"
         }
+
+    def check_week(self, week):
+        for key in self.sheet_by_week:
+            if week >= key:
+                return self.sheet_by_week[key]
 
     def generate_lift_weight_pairs(self, lifts, weights):
         """
@@ -70,13 +75,14 @@ class FormatSheet:
         If today is not a lifting day, return a string saying today is a rest day.
         Otherwise, return the formatted string by calling generate_lift_weight_pairs() and generate_fstring_from_pairlist() on defined values.
         """
+       
         lift_num = self.day_num_to_lift_num[self.day_num]
         # If the current day in training cycle is not a lifting day, return string.
         if lift_num == -1:
             return "Today is a rest day."    
 
         # GET CORRECT SHEET BASED ON WEEKNUM
-        sheet = getsheet.get_sheet_from_url(self.sheet_by_week[self.week_num])
+        sheet = getsheet.get_sheet_from_url(self.check_week(self.week_num))
         cur_sheet = sheet.loc[0 + ((lift_num - 1) * 6):(lift_num * 6) - 1]
         todays_lifts = list(filter(lambda e: e != "Null", cur_sheet.loc[:,"Exercise"].values))
         todays_weights = list(filter(lambda w: w != "Null", cur_sheet.loc[:,f"Week {self.week_num}"].values))
