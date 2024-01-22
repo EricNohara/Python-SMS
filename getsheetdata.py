@@ -19,10 +19,10 @@ class FormatSheet:
         self.day_num = self.total_days_since % 7
         self.day_num_to_lift_num = {
             1: 1,
-            2: -1,
-            3: 2,
-            4: -1,
-            5: 3,
+            2: 2,
+            3: -1,
+            4: 3,
+            5: -1,
             6: 4,
             0: -1   # This is Sunday, the 7th day because 7 % 7 = 0.
         }
