@@ -12,3 +12,5 @@ main_file_path = os.path.abspath("cat.jpg")             # Replace with media of 
 alt_file_path = os.path.abspath("cat-sleep.jpg")     # Replace with media to display on a rest day.
 mime_maintype = "image"     # Replace with correct mime maintype of downloaded media.
 mime_subtype = "jpeg"        # Replace with correct mime subtype of downloaded media.
+
+SLEEP_TIME = 5

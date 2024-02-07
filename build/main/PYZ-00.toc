@@ -147,6 +147,10 @@
   ('calendar',
    'C:\\Users\\Eric\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\calendar.py',
    'PYMODULE'),
+  ('check_network',
+   'C:\\Users\\Eric\\Desktop\\_project_starter_\\Python SMS Workouts '
+   'Automation\\check_network.py',
+   'PYMODULE'),
   ('cmd',
    'C:\\Users\\Eric\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\cmd.py',
    'PYMODULE'),
